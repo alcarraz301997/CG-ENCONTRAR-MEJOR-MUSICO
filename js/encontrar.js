@@ -140,3 +140,41 @@ function imprime_poblacion(){
     document.write(i + " - [" + poblacion[i].join(", ") + "]<br>")
   }
 }
+
+//Imprimimos todo
+for(let i = 0; i < generaciones; i++){
+  console.log("")
+  console.log("--------- GENERACIÓN " + i +" ---------")
+  document.write("<br>")
+  document.write("--------- GENERACIÓN " + i +" ---------<br>")
+  imprime_poblacion()
+  let nueva_generacion = new Array(individuos)
+
+  aptitud = medir_aptitud(poblacion)
+
+  for (let j = 0; j < Math.trunc(individuos / 2); j++){
+    let individuo_ganador = torneo(j, ((individuos - 1) - j))
+    nueva_generacion[j] = poblacion[individuo_ganador]
+  }
+
+  let mutaciones = Math.round(Math.random() * Math.trunc(individuos / 2))
+  for(let k = 0; k < mutaciones; k++){
+    mutacion(Math.round(Math.random() * mutaciones))
+  }
+
+  let indice_hijos = Math.trunc(individuos / 2)
+  for(let l = 0; l < indice_hijos; l+=2){
+    nueva_generacion[indice_hijos], nueva_generacion[indice_hijos + 1] = cruce(l, l + 1)
+    console.log("")
+    document.write("<br>")
+    
+  }
+  
+}
+
+console.log("")
+console.log("------- ÚLTIMA GENERACIÓN -------")
+document.write("<br>")
+document.write("------- ÚLTIMA GENERACIÓN -------<br>")
+imprime_poblacion()
+medir_aptitud(poblacion)

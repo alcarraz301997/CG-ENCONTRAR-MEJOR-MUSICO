@@ -102,3 +102,18 @@ function torneo(indice_individuo1, indice_individuo2) {
 
   return indice_ganador;
 }
+
+//Función de mutación que cambia de 1 a 0 un bit elegido al azar en un individuo
+function mutacion(indice_individuo){
+  console.log("MUTACION")
+  console.log(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]")
+  const indice_mutado = Math.floor(Math.random() * (cromosomas - 1))
+
+  if(poblacion[indice_individuo][indice_mutado] == 0){
+    poblacion[indice_individuo][indice_mutado] = 1
+  } else {
+    poblacion[indice_individuo][indice_mutado] = 0
+  }
+  console.log(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]")
+  console.log("")
+}

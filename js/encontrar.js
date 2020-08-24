@@ -117,3 +117,18 @@ function mutacion(indice_individuo){
   console.log(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]")
   console.log("")
 }
+
+//Función de cruce que intercambia un bit de dos individuos,la posicion del bit se elige al azar
+function cruce(indice_individuo1, indice_individuo2){
+  console.log("CRUCE")
+  console.log(indice_individuo1 + " - [" + poblacion[indice_individuo1].join(", " + "]"))
+  console.log(indice_individuo2 + " - [" + poblacion[indice_individuo2].join(", " + "]"))
+  let indice_cruce = Math.floor(Math.random() * (cromosomas - 1))
+  console.log("Indice de cruce " + indice_cruce)
+  console.log("Descendencias")
+  let descendencia1 = poblacion[indice_individuo1][indice_cruce] + poblacion[indice_individuo2][indice_cruce]
+  console.log(descendencia1)
+  let descendencia2 = poblacion[indice_individuo2][indice_cruce] + poblacion[indice_individuo1][indice_cruce]
+  console.log(descendencia2)
+  return descendencia1, descendencia2
+}

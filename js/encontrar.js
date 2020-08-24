@@ -62,6 +62,43 @@ function medir_aptitud(poblacion) {
   console.log("");
   return aptitud;
 }
+<
 
-//Llamamos a la funcion
-medir_aptitud(poblacion);
+//Función para realizar torneo entre cada par de individuos (elige el individuo con mayor aptitud)
+function torneo(indice_individuo1, indice_individuo2) {
+  console.log("TORNEO");
+  console.log(
+    indice_individuo1 +
+      " - [" +
+      poblacion[indice_individuo1].join(", ") +
+      "] = " +
+      aptitud[indice_individuo1]
+  );
+  console.log(
+    indice_individuo2 +
+      " - [" +
+      poblacion[indice_individuo2].join(", ") +
+      "] = " +
+      aptitud[indice_individuo2]
+  );
+
+  if (
+    Math.abs(aptitud[indice_individuo1]) > Math.abs(aptitud[indice_individuo2])
+  ) {
+    indice_ganador = indice_individuo1;
+  } else {
+    indice_ganador = indice_individuo2;
+  }
+
+  console.log("GANADOR");
+  console.log(
+    indice_ganador +
+      " - [" +
+      poblacion[indice_ganador].join(", ") +
+      "] = " +
+      aptitud[indice_ganador]
+  );
+  console.log("");
+
+  return indice_ganador;
+}

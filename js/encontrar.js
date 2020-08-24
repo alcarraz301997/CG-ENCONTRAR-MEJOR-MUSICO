@@ -8,7 +8,7 @@ let poblacion = new Array(individuos);
 for (let i = 0; i < individuos; i++) {
   poblacion[i] = new Array(cromosomas);
 }
-console.log("POBLACION INICIAL");
+document.write("POBLACION INICIAL<br>");
 
 //Llenando la población aleatoriamente
 for (let i = 0; i < individuos; i++) {
@@ -28,9 +28,9 @@ function medir_aptitud(poblacion) {
     Math.pow(2, -1),
     Math.pow(2, -2),
   ];
-  console.log("");
-  console.log("VALORES PARA DETERMINAR APTITUD MUSICAL");
-  console.log("Signo: [" + valores + "]");
+  document.write("<br>");
+  document.write("VALORES PARA DETERMINAR APTITUD MUSICAL<br>");
+  document.write("Signo: [" + valores + "]<br>");
 
   //Multiplicando el Vector de Aptitud por el cromosoma ( fila) de cada individuo de la Poblacion.
   let sumAptitud = 0;
@@ -47,10 +47,11 @@ function medir_aptitud(poblacion) {
   }
 
   //Imprimiendo valores de aptitud de cada  fila o cromosoma
-  console.log("");
-  console.log("APTITUD");
+  document.write("<br>");
+  document.write("APTITUD<br>");
+  document.write("<br>");
   for (let i = 0; i < individuos; i++) {
-    console.log(i + " - [" + poblacion[i].join(", ") + "] = " + aptitud[i]);
+    document.write(i + " - [" + poblacion[i].join(", ") + "] = " + aptitud[i] + "<br>");
   }
 
   //Imprimiendo la Aptitud Total de la Poblacion ( Sumas de las Aptitudes de sus individuos)
@@ -58,28 +59,27 @@ function medir_aptitud(poblacion) {
   for (let i = 0; i < individuos; i++) {
     total_aptitud += Math.abs(aptitud[i]);
   }
-  console.log("TOTAL APTITUD " + total_aptitud);
-  console.log("");
+  document.write("Total Aptitud: " + total_aptitud + "<br>");
+  document.write("<br>");
   return aptitud;
 }
-<
 
 //Función para realizar torneo entre cada par de individuos (elige el individuo con mayor aptitud)
 function torneo(indice_individuo1, indice_individuo2) {
-  console.log("TORNEO");
-  console.log(
+  document.write("TORNEO<br>");
+  document.write(
     indice_individuo1 +
       " - [" +
       poblacion[indice_individuo1].join(", ") +
       "] = " +
-      aptitud[indice_individuo1]
+      aptitud[indice_individuo1] + "<br>"
   );
-  console.log(
+  document.write(
     indice_individuo2 +
       " - [" +
       poblacion[indice_individuo2].join(", ") +
       "] = " +
-      aptitud[indice_individuo2]
+      aptitud[indice_individuo2] + "<br><br>"
   );
 
   if (
@@ -90,23 +90,23 @@ function torneo(indice_individuo1, indice_individuo2) {
     indice_ganador = indice_individuo2;
   }
 
-  console.log("GANADOR");
-  console.log(
+  document.write("GANADOR<br>");
+  document.write(
     indice_ganador +
       " - [" +
       poblacion[indice_ganador].join(", ") +
       "] = " +
-      aptitud[indice_ganador]
+      aptitud[indice_ganador] + "<br>"
   );
-  console.log("");
+  document.write("<br>");
 
   return indice_ganador;
 }
 
 //Función de mutación que cambia de 1 a 0 un bit elegido al azar en un individuo
 function mutacion(indice_individuo){
-  console.log("MUTACION")
-  console.log(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]")
+  document.write("MUTACION<br>")
+  document.write(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]<br>")
   const indice_mutado = Math.floor(Math.random() * (cromosomas - 1))
 
   if(poblacion[indice_individuo][indice_mutado] == 0){
@@ -114,21 +114,29 @@ function mutacion(indice_individuo){
   } else {
     poblacion[indice_individuo][indice_mutado] = 0
   }
-  console.log(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]")
-  console.log("")
+  document.write(indice_individuo + " - [" + poblacion[indice_individuo].join(", ") + "]<br>")
+  document.write("<br>")
 }
 
 //Función de cruce que intercambia un bit de dos individuos,la posicion del bit se elige al azar
 function cruce(indice_individuo1, indice_individuo2){
-  console.log("CRUCE")
-  console.log(indice_individuo1 + " - [" + poblacion[indice_individuo1].join(", " + "]"))
-  console.log(indice_individuo2 + " - [" + poblacion[indice_individuo2].join(", " + "]"))
+  document.write("CRUCE<br>")
+  document.write(indice_individuo1 + " - [" + poblacion[indice_individuo1].join(", ") + "]<br>")
+  document.write(indice_individuo2 + " - [" + poblacion[indice_individuo2].join(", ") + "]<br>")
   let indice_cruce = Math.floor(Math.random() * (cromosomas - 1))
-  console.log("Indice de cruce " + indice_cruce)
-  console.log("Descendencias")
+  document.write("Indice de cruce " + indice_cruce + "<br>")
+  document.write("Descendencias<br>")
   let descendencia1 = poblacion[indice_individuo1][indice_cruce] + poblacion[indice_individuo2][indice_cruce]
-  console.log(descendencia1)
+  document.write(descendencia1 + "<br>")
   let descendencia2 = poblacion[indice_individuo2][indice_cruce] + poblacion[indice_individuo1][indice_cruce]
-  console.log(descendencia2)
+  document.write(descendencia2 + "<br>")
   return descendencia1, descendencia2
+}
+
+//Imprime población
+function imprime_poblacion(){
+  for (let i = 0; i < individuos; i++){
+    console.log(i + " - [" + poblacion[i].join(", ") + "]")
+    document.write(i + " - [" + poblacion[i].join(", ") + "]<br>")
+  }
 }
